@@ -29,12 +29,22 @@
 
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'yogurt_view' %}">
-                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Yogurt' %}
+                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Dashboard' %}
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="{% url 'yogurt_view' %}">
-                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Bread' %}
+            <a class="nav-link" href="{% url 'yogurt_cus_view' %}">
+                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Customers' %}
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'yogurt_checkin_mannager' %}">
+                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Check In' %}
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'yogurt_order_view' %}">
+                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Order' %}
             </a>
         </li>
         {% endif %}

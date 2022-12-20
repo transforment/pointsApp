@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css"/>
 
     <style>
+        .form-group.required .control-label:after {
+            content:" * ";
+            color:red;
+        }
         .truncate_checkBox {
             max-width:20px;
             white-space: nowrap;
@@ -51,7 +55,7 @@
             text-overflow: ellipsis;
         }
         .label_fix {
-            margin-top: 10px;
+            margin-top: 0px;
         }
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -81,8 +85,8 @@
               max-width: 680px;
               padding: 0 0px;
         }
-
-        body { padding-top: 80px; }
+        
+        body { padding-top: 0px; }
 
         .footer {
           background-color: #f5f5f5;
@@ -145,6 +149,9 @@ $(document).ready(function() {
         return false;
     });
     $('.alert').alert();
+    $(".alert").delay(4000).slideUp(200, function() {
+    $(this).alert('close');
+    });
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
