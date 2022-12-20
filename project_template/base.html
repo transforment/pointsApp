@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html>
+<head>
+    <title>SES {% trans request.session.tab %}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/logo.png' %}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css"/>
+
+    <style>
+        .form-group.required .control-label:after {
+            content:" * ";
+            color:red;
+        }
+        .truncate_checkBox {
+            max-width:20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .truncate_classification {
+            max-width:40px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .truncate_No {
+            max-width:45px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .truncate_date_matching {
+            max-width:65px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .truncate_subject {
+            max-width:250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .label_fix {
+            margin-top: 0px;
+        }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        input[type=checkbox]
+        {
+        float: left;
+        margin: 0 auto;
+        width: 100%;
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        }
+
+        @media (min-width: 1200px) {
+            .bd-placeholder-img-lg {
+             font-size: 3.5rem;
+        }
+        .container {
+              width: auto;
+              max-width: 680px;
+              padding: 0 0px;
+        }
+        
+        body { padding-top: 0px; }
+
+        .footer {
+          background-color: #f5f5f5;
+        }
+        .back-to-top {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: red;
+        display: none;
+        }
+      }
+    </style>
+</head>
+<body class=" d-flex flex-column h-100">
+{% include 'navbar.html' %}
+
+<div class="container-fluid">
+    {% block content %}
+
+    {% endblock %}
+</div><!-- /.container -->
+<!-- Optional JavaScript -->
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+{% if messages %}
+    {% if request.path != "/data_manager_view/" %}
+    {% for message in messages %}
+        <div class="fixed-bottom alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+             role="alert">{{ message }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    {% endfor %}
+    {% endif %}
+{% endif %}
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fa fa-angle-double-up"></i></a>
+{% block footer %}
+{% endblock %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+        // scroll body to 0px on click
+    $('#back-to-top').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
+    $('.alert').alert();
+    $(".alert").delay(4000).slideUp(200, function() {
+    $(this).alert('close');
+    });
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+    $('#tablepaging').DataTable({
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        "pagingType": "full",
+    });
+});
+</script>
+</body>
+</html>

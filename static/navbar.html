@@ -1,0 +1,54 @@
+{% load i18n %}
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand py-2" href="#">
+      <svg  width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false">
+          <title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user fa-fw"></i>{{request.user}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{% url 'home_view' %}">
+                        <i class="fa fa-cog" aria-hidden="true"></i> {% trans 'Profile' %}
+                    </a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> {% trans 'Log out' %}
+                    </a>
+                </div>
+            </div>
+        </li>
+        {% if request.session.level <= 1 %}
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'yogurt_view' %}">
+                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Yogurt' %}
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'yogurt_view' %}">
+                <i class="fa fa-file-o" aria-hidden="true"></i> {% trans 'Bread' %}
+            </a>
+        </li>
+        {% endif %}
+
+    </ul>
+      <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle nav-link" type="button" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownLang">
+                    <a class="dropdown-item" href="{% url 'set_lang_en' %}">en</a>
+                    <a class="dropdown-item" href="{% url 'set_lang_es' %}">es</a>
+                </div>
+      </div>
+
+  </div>
+</nav>

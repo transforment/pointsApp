@@ -1,0 +1,146 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-02 17:11-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\pointsApp\settings.py:124
+msgid "English"
+msgstr ""
+
+#: .\pointsApp\settings.py:125
+msgid "Spanish"
+msgstr ""
+
+#: .\project_template\error_404.html:4 .\static\error_404.html:4
+msgid "404 error page"
+msgstr ""
+
+#: .\project_template\home_view.html:4 .\static\home_view.html:4
+msgid "This is Home"
+msgstr ""
+
+#: .\project_template\home_view.html:13 .\static\home_view.html:13
+msgid "Location"
+msgstr "Ubicación"
+
+#: .\project_template\home_view.html:16 .\static\home_view.html:16
+msgid "TOKYO"
+msgstr ""
+
+#: .\project_template\home_view.html:17 .\static\home_view.html:17
+msgid "OSAKA"
+msgstr ""
+
+#: .\project_template\home_view.html:22 .\static\home_view.html:22
+msgid "Change"
+msgstr "Cambio"
+
+#: .\project_template\home_view.html:30 .\static\home_view.html:30
+msgid "Change Password"
+msgstr "Cambia la contraseña"
+
+#: .\project_template\home_view.html:35 .\static\home_view.html:35
+msgid "Current Password"
+msgstr "contraseña actual"
+
+#: .\project_template\home_view.html:39 .\static\home_view.html:39
+msgid "New Password"
+msgstr "Nueva contraseñ"
+
+#: .\project_template\home_view.html:42 .\static\home_view.html:42
+msgid "The password must be 8-20 characters, and must not contain spaces."
+msgstr ""
+
+#: .\project_template\home_view.html:46 .\static\home_view.html:46
+msgid "Verify New Password"
+msgstr ""
+
+#: .\project_template\home_view.html:49 .\static\home_view.html:49
+msgid "Type the new password again."
+msgstr ""
+
+#: .\project_template\home_view.html:53 .\static\home_view.html:53
+msgid "Update"
+msgstr "Actualizar"
+
+#: .\project_template\login_view.html:65 .\static\login_view.html:65
+msgid "User Name"
+msgstr "Nombre de usuario"
+
+#: .\project_template\login_view.html:72 .\static\login_view.html:72
+msgid "Password"
+msgstr "Clave"
+
+#: .\project_template\login_view.html:79 .\static\login_view.html:79
+msgid "Remember me"
+msgstr "Acuérdate de mí"
+
+#: .\project_template\login_view.html:90 .\static\login_view.html:90
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+#: .\project_template\navbar.html:20 .\static\navbar.html:20
+msgid "Profile"
+msgstr "Perfil"
+
+#: .\project_template\navbar.html:23 .\static\navbar.html:23
+msgid "Log out"
+msgstr "Cerrar sesión"
+
+#: .\project_template\navbar.html:32 .\static\navbar.html:32
+msgid "Yogurt"
+msgstr ""
+
+#: .\project_template\navbar.html:37 .\static\navbar.html:37
+msgid "Bread"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:8
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:17
+msgid "Check In"
+msgstr "Registrarse"
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:13
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:29
+msgid "Phone Number"
+msgstr "Número de teléfono"
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:24
+msgid "Register Phone Number"
+msgstr "Registrar número de teléfono"
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:33
+msgid "Name"
+msgstr "Nombre"
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:37
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:41
+msgid "Date of Birth"
+msgstr "Fecha de nacimiento"
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:45
+msgid "Register"
+msgstr "Registro"
+
+#, fuzzy
+#~| msgid "Location"
+#~ msgid "Verification"
+#~ msgstr "Ubicación"

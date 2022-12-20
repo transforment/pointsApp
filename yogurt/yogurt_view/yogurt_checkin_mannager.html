@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load i18n %}
+<br>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mt-5 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{% trans 'Check In' %}</h1>
+</div>
+<br>
+<table id="table_paging" class="table table-striped todo-table">
+    <thead>
+    <tr>    
+        <th>{% trans 'Name' %}</th>
+        <th>{% trans 'Phone' %}</th>
+        <th>{% trans 'Check In Time' %}</th>
+        <th>{% trans 'Order Price' %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+    <tr class="text-dark">
+        <td >
+            <div>{{ post.name }}</div>
+        </td>
+        <td>
+            <div>{{ post.phone }}</div>
+        </td>
+        <td>
+            <div>{{ post.checkInTime }}</div>
+        </td>
+        <td>
+            <div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal"data-order-id="{{ post.id }}" data-order-phone="{{ post.phone }}"data-order-checkin="{{ post.checkInTime }}">Set price order</button>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans 'Set Order Price' %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'yogurt_setPrice' %}" method="post">{% csrf_token %}
+      <div class="modal-body">
+        
+            <input type="number" name="orderId" value="" hidden>
+            <input type="number" name="orderPhone" value="" hidden>
+            <div class="form-group">
+                <label>{% trans 'Phone' %}</label>
+                <input type="text" class="form-control" name="orderPhone" value=""disabled>
+            </div>
+            <div class="form-group">
+                <label>{% trans 'Last Check In' %}</label>
+                <input type="text" class="form-control" name="orderCheckIn" value=""disabled>
+            </div>
+            <div class="form-group">
+                <label>{% trans 'Order Price' %}</label>
+                <input type="number" class="form-control" name="orderPrice" value=""required>
+            </div>       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Close' %}</button>
+        <button type="submit"  name="action" class="btn btn-primary col-xs-3">{% trans 'Set Order Price' %}</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+function make_table_paging(name) {
+    var per_table = $('#'+name+'').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true,
+        "autoWidth": false,
+        fixedColumns: true,
+        "scrollX": true,
+        "lengthMenu": [[10, 25, -1], [10, 25, "All"]],
+        "pagingType": "full",
+        "language": {
+            "lengthMenu": " {% trans 'Showing' %} _MENU_",
+            "loadingRecords": "{% trans 'Loading' %} ...",
+            "search": "{% trans 'Search' %}",
+            "paginate": {
+                "first": "{% trans 'First' %}",
+                "last": "{% trans 'Last' %}",
+                "next": '{% trans "Next" %}',
+                "previous": "{% trans 'Previous' %}"
+            },
+            "info": "{% trans 'Showing' %} _START_ -> _END_ {% trans 'of' %} _TOTAL_",
+            "infoFiltered": "",
+            "infoEmpty": "{% trans 'No records available' %}",
+        }
+    });
+
+}
+
+$(document).ready(function() {
+    make_table_paging('table_paging');
+
+});
+
+$('#formModal').on('show.bs.modal', function(e) {
+    var orderId = $(e.relatedTarget).data('order-id');
+    var orderPhone = $(e.relatedTarget).data('order-phone');
+    var orderCheckIn = $(e.relatedTarget).data('order-checkin');
+    $(e.currentTarget).find('input[name="orderId"]').val(orderId);
+    $(e.currentTarget).find('input[name="orderPhone"]').val(orderPhone);
+    $(e.currentTarget).find('input[name="orderCheckIn"]').val(orderCheckIn);
+
+});
+</script>
+{% endblock %}

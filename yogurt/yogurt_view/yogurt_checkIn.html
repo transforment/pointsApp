@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+<input type="text" id="Res" value="{{ Res }}" hidden />
+<input type="text" id="CusName" value="{{ CusName }}" hidden />
+<div class="card card-outline-secondary">
+    <div class="card-header">
+        <h3 class="mb-0">{% trans 'Check In' %}</h3>
+    </div>
+    <div class="card-body">
+        <form action="{% url 'yogurt_set_checkIn' %}" method="post">{% csrf_token %}
+            <div class="form-group required">
+                <label class="control-label">{% trans 'Phone Number' %}</label>
+                <input type="tel" class="form-control" name="inputCheckInPhone" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="action" value="CheckIn" class="btn btn-primary btn-lg float-right">{% trans 'Check In' %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="alertmessage"></div>
+
+<div class="card card-outline-secondary">
+    <div class="card-header">
+        <h3 class="mb-0">{% trans 'Register Phone Number' %}</h3>
+    </div>
+    <div class="card-body">
+        <form action="{% url 'yogurt_set_checkIn' %}" method="post">{% csrf_token %}
+            <div class="row form-group required">
+                <div class="col-8">
+                    <label class="control-label">{% trans 'Phone Number' %}</label>
+                    <input type="tel" class="form-control" name="inputRegPhone" required>
+                </div>
+                <div class="col-4">
+                    <label class="control-label">{% trans 'Phone Provider' %}</label>
+                    <select class="form-select form-control" name="inputRegProvider" required>
+                        <option hidden disabled selected value>{% trans 'Select Phone Provider' %}</option>
+                        <option value="T-Mobile">T-Mobile</option>
+                        <option value="AT&T">AT&T</option>
+                        <option value="Boost Mobile">Boost Mobile</option>
+                        <option value="Mint Mobile">Mint Mobile</option>
+                        <option value="Verizon">Verizon</option>
+                        <option value="Ting">Ting</option>
+                        <option value="U.S. Cellular">U.S. Cellular</option>
+                        <option value="C-Spire">C-Spire</option>
+                        <option value="Virgin Mobile">Virgin Mobile</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="control-label">{% trans 'Name' %}</label>
+                <input type="text" class="form-control" name="inputRegName" required>
+            </div>
+            <div class="form-group">
+                <label>{% trans 'Email' %}</label>
+                <input type="email" class="form-control" name="inputRegEmail">
+            </div>
+            <div class="form-group">
+                <label>{% trans 'Date of Birth' %}</label>
+                <input type="date" class="form-control" name="inputRegDateOfBirth">
+            </div>
+            <div class="form-group">
+                <button type="submit" name="action" value="Register" class="btn btn-success btn-lg float-left">{% trans 'Register' %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+$(document).ready(function() {
+    var result = document.getElementById("Res").value;
+    var CusName = document.getElementById("CusName").value;
+    if (result == "CheckInSuccess") {
+        $('#alertmessage').html(`
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Check-In Success</h4>
+                <p>Thank you Mr/Mrs ` + CusName + `, please enjoy our service.</p>
+            </div>
+                `);
+    }
+    if (result == "CheckInFail") {
+        console.log("fail");
+        $('#alertmessage').html(`
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Check-In Failed </h4>
+                <p>Cannot find your phone number in our system. Please register your information.</p>
+            </div>
+                `);
+    }
+    if (result == "RegisterSuccess") {
+        $('#alertmessage').html(`
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Register Success</h4>
+                <p>Wellcome Mr/Mrs ` + CusName + `, please enjoy our service.</p>
+            </div>
+                `);
+    }
+    if (result == "RegisterFail") {
+        $('#alertmessage').html(`
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Register Fail</h4>
+                <p>Your data is already in our system, please Check-In if you use our service. Have a good day!!!</p>
+            </div>
+                `);
+    }
+});
+
+</script>
+{% endblock %}

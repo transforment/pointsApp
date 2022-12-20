@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load i18n %}
+<br>
+
+<br>
+<br>
+<div class="row ">
+    <div class="col-lg-4 col-sm-4">
+        <h1 class="h2">{% trans 'Customers' %}</h1>
+    </div>
+    <div class="col-lg-4 col-sm-4">
+
+    </div>
+    <div class="col-lg-4 col-sm-4">
+        <button name="btn_sent_sms" id="btn_sent_sms" class="btn btn-lg btn-info"data-toggle="modal"  data-target="#confirmModal" onclick="" disabled>{% trans 'Sent SMS' %}
+        </button>
+    </div>
+</div>
+<table id="table_cus" class="table table-striped todo-table"style="width:100%">
+    <thead>
+    <tr>
+        <th><a href="#" id="cus_select_all">{% trans 'All' %}</a></th>
+        <th>{% trans 'No.' %}</th>
+        <th>{% trans 'Name' %}</th>
+        <th>{% trans 'Phone' %}</th>
+        <th>{% trans 'Email' %}</th>
+        <th>{% trans 'Date of Birth' %}</th>
+        <th>{% trans 'Point' %}</th>
+        <th>{% trans 'Coupon' %}</th>
+        <th>{% trans 'Last Check In' %}</th>
+    </tr>
+    </thead>
+</table>
+<input type="hidden" id="Url" data-url="{% url 'yogurt_cus_edit' 1 %}" />
+<input type="hidden" id="cus_list" class="cus_list" value="0"/>
+{% include 'modal.html' %}
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+
+function make_cus_paging(name ,url, dataSet) {
+    var ll_table = $('#' + name + '').DataTable({
+        'createdRow': function(row, data, dataIndex) {
+            $(row).attr('id', 'row-' + dataIndex);
+        },
+        dom: "<'row'<'col-sm-3 label_fix'l><'col-sm-4 'i><'col-sm-5 label_fix'f>>" + "<'row'<'col-sm-12't>>" + "<'row'<'col-sm-12'p>>",
+        data: dataSet,
+        columnDefs: [
+            {
+                "targets": 0,
+                "data": null,
+                'render': function(data) {//, type, row, meta) {
+                        return '<input id="cus_' + data[1] + '" type="checkbox" class="cus_record" onchange="cus_checkbox(this.id)">';                                           
+                },
+            },
+            {
+                "targets": 1,
+                "data": null,
+         "render": function(data, type, row, meta){
+            if(type === 'display'){
+                data = '<a href="' + url  + data[1] + '">' + data[1] + '</a>';
+            }
+
+            return data;
+         },
+            },
+        ],
+        orderCellsTop: true,
+        fixedHeader: true,
+        "autoWidth": false,
+        fixedColumns: true,
+        "scrollX": true,
+        "lengthMenu": [
+            [ -1,30, 10 ],
+            [ "All",30, 10 ]
+        ],
+        "pagingType": "full",
+        "language": {
+            "lengthMenu": " {% trans 'Showing' %} _MENU_",
+            "loadingRecords": "{% trans 'Loading' %} ...",
+            "search": "{% trans 'Search' %}",
+            "paginate": {
+                "first": "{% trans 'First' %}",
+                "last": "{% trans 'Last' %}",
+                "next": '{% trans "Next" %}',
+                "previous": "{% trans 'Previous' %}"
+            },
+            "info": "{% trans 'Showing' %} _START_ -> _END_ {% trans 'of' %} _TOTAL_",
+            "infoFiltered": "",
+            "infoEmpty": "{% trans 'No records available' %}",
+        }
+    });
+}
+function remove_duplicate() {
+    var cus_list = document.getElementById("cus_list").value;
+    var cus_array_not_unique = cus_list.split(",");
+    var cus_array = [];
+    $.each(cus_array_not_unique, function(i, el){
+    if($.inArray(el, cus_array) === -1) cus_array.push(el);
+    });
+    document.getElementById("cus_list").value = cus_array.toString();
+    if (cus_array.indexOf("0") !== -1) {
+        cus_array.splice(cus_array.indexOf("0"), 1);       
+    }    
+    document.getElementById("cus_list_show").value = cus_array.toString()
+}
+function checkstt(cus_list) {
+    if (cus_list == "0") {
+        document.getElementById("btn_sent_sms").disabled = true;
+    } else {
+        document.getElementById("btn_sent_sms").disabled = false;
+    }
+}
+function cus_checkbox(idCus) {
+    var cus_list = document.getElementById("cus_list").value;
+    var replace = idCus.replace("cus_", "");
+    var cus_array = cus_list.split(",");
+    if (document.getElementById(idCus).checked == true) {
+        cus_array.push(replace);
+    } else {
+        cus_array.splice(cus_array.indexOf(replace), 1);
+    }
+    
+    checkstt(cus_array.toString());
+    //remove_duplicate();
+    var cus_array_unique = [];
+    $.each(cus_array, function(i, el){
+    if($.inArray(el, cus_array_unique) === -1) cus_array_unique.push(el);
+    });
+    document.getElementById("cus_list").value = cus_array_unique.toString();
+    console.log(cus_array_unique);
+    if (cus_array_unique.indexOf("0") !== -1) {
+        cus_array_unique.splice(cus_array_unique.indexOf("0"), 1);
+        console.log(cus_array_unique);        
+    }    
+    document.getElementById("cus_list_show").value = cus_array_unique.toString()
+
+    
+    //console.log(cus_array.toString());
+}
+var all_cus_list = "{{ all_cus_list|safe }}";
+var arrays = eval(all_cus_list);
+var url = $("#Url").attr("data-url");
+url = url.substring(0, url.length - 1);
+$(document).ready(function() {
+    $("#cus_select_all").click(function() {
+        if ($('.cus_record').length == $('.cus_record:checkbox:checked').length) {
+            $('.cus_record').prop('checked', false).change();
+            //$('#dvcount').html($('.person_record:checkbox:checked').length);
+        } else {
+            $('.cus_record').prop('checked', true).change();
+            //console.log(idPersonnel);
+        }
+        remove_duplicate();
+    });
+    make_cus_paging('table_cus',url , arrays);
+    
+});
+</script>
+{% endblock %}

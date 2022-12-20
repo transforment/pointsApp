@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+		.user_card {
+			height: 400px;
+			width: 350px;
+			margin-top: 200px;
+			margin-bottom: auto;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+
+		}
+		.brand_logo_container {
+			position: absolute;
+			height: 170px;
+			width: 170px;
+			top: -75px;
+			padding: 0px;
+			text-align: center;
+		}
+		.brand_logo {
+			height: 150px;
+			width: 150px;
+		}
+		.form_container {
+			margin-top: 100px;
+		}
+		.login_container {
+			padding: 0 2rem;
+		}
+
+
+</style>
+{% load static %}
+{% load i18n %}
+
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="{% static 'img/logo.png' %}" class="brand_logo" alt="Logo">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+                <form id="FormLogin" action="{% url 'login' %}" method="post" class="form-signin">{% csrf_token %}
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input type="text" name="userName" class="form-control input_user" value=""
+                               placeholder="{% trans 'User Name' %}" required>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                        </div>
+                        <input type="password" name="inputPassword" class="form-control input_pass" value=""
+                               placeholder="{% trans 'Password' %}" required>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">
+                                {% trans 'Remember me' %}
+                            </label>
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger" role="alert">{{ message }}</div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block" name="button" type="submit">
+                            {% trans 'Log in' %}
+                        </button>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#FormLogin').bootstrapValidator({
+        container: '#messages',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            inputPassword: {
+		        validators: {
+			    stringLength: {
+				min: 2,
+				message: 'Minimum 2 letters'
+			    },
+			    notEmpty: {
+				message: 'Please fill'
+			    }
+		        }
+	        },
+
+        }
+    });
+});
+
+
+</script>
+{% endblock %}
+

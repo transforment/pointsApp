@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load i18n %}
+<br>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mt-5 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{% trans 'Order' %}</h1>
+</div>
+<br>
+<table id="table_paging" class="table table-striped todo-table">
+    <thead>
+    <tr>
+        <th class="d-none" >{% trans 'No.' %}</th>      
+        <th>{% trans 'Name' %}</th>
+        <th>{% trans 'Phone' %}</th>
+        <th>{% trans 'Check In Time' %}</th>
+        <th>{% trans 'Order Price' %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+    <tr class="text-dark">
+        <td class="d-none">{{ post.id }}</td>
+        <td >
+            <div>{{ post.name }}</div>
+        </td>
+        <td>
+            <div>{{ post.phone }}</div>
+        </td>
+        <td>
+            <div>{{ post.checkInTime }}</div>
+        </td>
+        <td>
+            <div>{{ post.orderPrice }}</div>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+function make_table_paging(name) {
+    var per_table = $('#'+name+'').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true,
+        "autoWidth": false,
+        fixedColumns: true,
+        "scrollX": true,
+        "lengthMenu": [[10, 25, -1], [10, 25, "All"]],
+        "pagingType": "full",
+        "language": {
+            "lengthMenu": " {% trans 'Showing' %} _MENU_",
+            "loadingRecords": "{% trans 'Loading' %} ...",
+            "search": "{% trans 'Search' %}",
+            "paginate": {
+                "first": "{% trans 'First' %}",
+                "last": "{% trans 'Last' %}",
+                "next": '{% trans "Next" %}',
+                "previous": "{% trans 'Previous' %}"
+            },
+            "info": "{% trans 'Showing' %} _START_ -> _END_ {% trans 'of' %} _TOTAL_",
+            "infoFiltered": "",
+            "infoEmpty": "{% trans 'No records available' %}",
+        }
+    });
+
+}
+
+$(document).ready(function() {
+    make_table_paging('table_paging');
+
+});
+
+
+</script>
+{% endblock %}

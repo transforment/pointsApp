@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<!-- Confirm Modal HTML -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{% url 'yogurt_sent_sms' %}" method="post">{% csrf_token %}
+                <div class="modal-header">
+                    <h4>{% trans 'Confirm' %} </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="confirm_text">{% trans 'Sent SMS to customer id below ?' %}</label>
+                        <input id="cus_list_show" readonly="readonly" value="" class="form-control" name="sms_sent_list">
+                    </div>
+                    <div class="form-group">
+                        <label >{% trans 'Subject' %}</label>
+                        <input type="text" class="form-control" name="sms_subject" value="Notification from Yogurt Zone">
+                    </div>
+                    <div class="form-group">
+                        <label >{% trans 'Content' %}</label>
+                        <input type="text" class="form-control" name="sms_content">
+                    </div>
+    
+                </div>
+                <div class="modal-footer">                                        
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="{% trans 'Cancel' %}">
+                    <button type="submit" name="action" id="job_release_submit" class="btn btn-info" value="">{% trans 'Sent SMS' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+#: .\pointsApp\settings.py:124
+msgid "English"
+msgstr ""
+
+#: .\pointsApp\settings.py:125
+msgid "Spanish"
+msgstr ""
+
+#: .\project_template\error_404.html:4 .\static\error_404.html:4
+msgid "404 error page"
+msgstr ""
+
+#: .\project_template\home_view.html:4 .\static\home_view.html:4
+msgid "This is Home"
+msgstr ""
+
+#: .\project_template\home_view.html:13 .\static\home_view.html:13
+msgid "Location"
+msgstr ""
+
+#: .\project_template\home_view.html:16 .\static\home_view.html:16
+msgid "TOKYO"
+msgstr ""
+
+#: .\project_template\home_view.html:17 .\static\home_view.html:17
+msgid "OSAKA"
+msgstr ""
+
+#: .\project_template\home_view.html:22 .\static\home_view.html:22
+msgid "Change"
+msgstr ""
+
+#: .\project_template\home_view.html:30 .\static\home_view.html:30
+msgid "Change Password"
+msgstr ""
+
+#: .\project_template\home_view.html:35 .\static\home_view.html:35
+msgid "Current Password"
+msgstr ""
+
+#: .\project_template\home_view.html:39 .\static\home_view.html:39
+msgid "New Password"
+msgstr ""
+
+#: .\project_template\home_view.html:42 .\static\home_view.html:42
+msgid "The password must be 8-20 characters, and must not contain spaces."
+msgstr ""
+
+#: .\project_template\home_view.html:46 .\static\home_view.html:46
+msgid "Verify New Password"
+msgstr ""
+
+#: .\project_template\home_view.html:49 .\static\home_view.html:49
+msgid "Type the new password again."
+msgstr ""
+
+#: .\project_template\home_view.html:53 .\static\home_view.html:53
+msgid "Update"
+msgstr ""
+
+#: .\project_template\login_view.html:65 .\static\login_view.html:65
+msgid "User Name"
+msgstr ""
+
+#: .\project_template\login_view.html:72 .\static\login_view.html:72
+msgid "Password"
+msgstr ""
+
+#: .\project_template\login_view.html:79 .\static\login_view.html:79
+msgid "Remember me"
+msgstr ""
+
+#: .\project_template\login_view.html:90 .\static\login_view.html:90
+msgid "Log in"
+msgstr ""
+
+#: .\project_template\navbar.html:20 .\static\navbar.html:20
+msgid "Profile"
+msgstr ""
+
+#: .\project_template\navbar.html:23 .\static\navbar.html:23
+msgid "Log out"
+msgstr ""
+
+#: .\project_template\navbar.html:32 .\static\navbar.html:32
+msgid "Yogurt"
+msgstr ""
+
+#: .\project_template\navbar.html:37 .\static\navbar.html:37
+msgid "Bread"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:8
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:17
+msgid "Check In"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:13
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:29
+msgid "Phone Number"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:24
+msgid "Register Phone Number"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:33
+msgid "Name"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:37
+msgid "Email"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:41
+msgid "Date of Birth"
+msgstr ""
+
+#: .\yogurt\yogurt_view\yogurt_checkIn.html:45
+msgid "Register"
+msgstr ""
